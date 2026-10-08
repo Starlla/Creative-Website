@@ -344,6 +344,79 @@ a { color: inherit; }
 }
 .chips li:hover { border-color: var(--signal); color: var(--signal); }
 
+/* Claim: pinned scroll statement, modeled on creadevs' "Join many creatives" ---- */
+.claim {
+  --p: 0;
+  --e: clamp(0, (var(--p) - 0.8) / 0.12, 1);   /* exit progress */
+  --b: clamp(0, (var(--p) - 0.6) / 0.08, 1);   /* tagline progress */
+  position: relative;
+  height: 320vh;
+  border-top: 1px solid var(--line);
+}
+.claim-sticky {
+  position: sticky; top: 0;
+  height: 100vh; height: 100svh;
+  display: flex; align-items: center;
+  overflow: hidden;
+  perspective: 1000px;
+}
+.claim-text {
+  width: 100%;
+  display: grid; grid-template-columns: minmax(0, 1fr);
+  font-family: var(--f-display); font-stretch: 75%; font-weight: 800;
+  text-transform: uppercase; line-height: 1.05; color: var(--fg);
+  transform-style: preserve-3d;
+}
+.claim-line { display: block; white-space: nowrap; transform-style: preserve-3d; }
+.claim-line.l1 { font-size: clamp(2.2rem, 7vw, 6rem); }
+.claim-line.l2 { font-size: clamp(1.9rem, 5.6vw, 4.8rem); margin-left: min(16vw, 14rem); }
+.claim-line.l3 { font-size: clamp(1.6rem, 4.8vw, 4.2rem); margin-left: min(22vw, 19rem); }
+.claim-line.l4 { font-size: clamp(1.2rem, 3.4vw, 3rem); margin-left: min(28vw, 24rem); }
+
+/* word: flies toward the viewer during the exit */
+.cw {
+  display: inline-block; margin-right: 0.22em;
+  transform-style: preserve-3d;
+  transform:
+    translateX(calc(var(--e) * var(--tx)))
+    translateZ(calc(var(--e) * var(--tz)))
+    rotateX(calc(var(--e) * var(--rx)));
+  opacity: calc(1 - var(--e));
+}
+.cw:last-child { margin-right: 0; }
+.cw.em { color: var(--muted); font-weight: 900; }
+
+/* letter: assembles from a scattered size and offset as --p passes its own --t */
+.cc {
+  --q: clamp(0, (var(--p) - var(--t)) / 0.07, 1);
+  display: inline-block;
+  opacity: var(--q);
+  transform:
+    translateY(calc((1 - var(--q)) * var(--dy)))
+    scale(calc(var(--s0) + (1 - var(--s0)) * var(--q)));
+}
+
+.claim-tag {
+  justify-self: end;
+  margin-top: clamp(1.5rem, 4vw, 3.5rem);
+  font-size: clamp(0.95rem, 0.8rem + 0.8vw, 1.6rem); font-weight: 700;
+  color: var(--dim);
+  opacity: calc(var(--b) * (1 - var(--e)));
+  filter: blur(calc((1 - var(--b)) * 12px));
+}
+
+@media (max-width: 560px) {
+  .claim { height: 260vh; }
+  .claim-line { white-space: normal; }
+  .claim-line.l1 { font-size: 2rem; }
+  .claim-line.l2 { font-size: 1.7rem; }
+  .claim-line.l3 { font-size: 1.45rem; }
+  .claim-line.l4 { font-size: 1.15rem; }
+  .claim-line.l2 { margin-left: 1.5rem; }
+  .claim-line.l3 { margin-left: 2.75rem; }
+  .claim-line.l4 { margin-left: 4rem; }
+}
+
 /* Timeline ------------------------------------------------------------- */
 .timeline { padding-block: clamp(3rem, 8vw, 6rem); border-top: 1px solid var(--line); }
 .timeline-head {

@@ -4,6 +4,7 @@ import Nav from './components/Nav.jsx';
 import Hero from './components/Hero.jsx';
 import Audiences from './components/Audiences.jsx';
 import About from './components/About.jsx';
+import Claim from './components/Claim.jsx';
 import Timeline from './components/Timeline.jsx';
 import Join from './components/Join.jsx';
 import Footer from './components/Footer.jsx';
@@ -20,6 +21,7 @@ export default function App() {
           <Hero ready={introDone} />
           <Audiences />
           <About />
+          <Claim />
           <Timeline />
           <Join />
         </main>
