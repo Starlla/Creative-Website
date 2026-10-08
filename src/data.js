@@ -95,10 +95,10 @@ export const timeline = [
   { label: 'Strategy', status: 'done' },
   { label: 'Design', status: 'done' },
   { label: 'Build', status: 'done' },
-  { label: 'Pre-beta testing', status: 'active' },
-  { label: 'Closed beta', status: 'next' },
-  { label: 'Open beta', status: 'next' },
-  { label: 'Pre-launch testing', status: 'next' },
+  { label: 'Pre-beta\ntesting', status: 'active' },
+  { label: 'Closed\nbeta', status: 'next' },
+  { label: 'Open\nbeta', status: 'next' },
+  { label: 'Pre-launch\ntesting', status: 'next' },
   { label: 'Launch', status: 'next' },
 ];
 
